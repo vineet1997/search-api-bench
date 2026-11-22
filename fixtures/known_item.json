@@ -1,0 +1,32 @@
+{
+  "suite": "S1_known_item",
+  "note": "Known-item retrieval. Each query names a real program; exactly one host is correct. Gold is domain-level so the fixture survives site restructures. VERIFY with `python bench/run_bench.py verify-gold` before trusting a run.",
+  "match_default": "domain",
+  "queries": [
+    {"id": "k01", "q": "Recurse Center programmer retreat application", "gold": ["recurse.com"]},
+    {"id": "k02", "q": "Schmidt Science Fellows postdoctoral fellowship eligibility", "gold": ["schmidtsciencefellows.org"]},
+    {"id": "k03", "q": "Royal Society Newton International Fellowship application", "gold": ["royalsociety.org"]},
+    {"id": "k04", "q": "Humboldt Research Fellowship for postdoctoral researchers", "gold": ["humboldt-foundation.de"]},
+    {"id": "k05", "q": "JSPS Postdoctoral Fellowship for Research in Japan standard", "gold": ["jsps.go.jp"]},
+    {"id": "k06", "q": "Alan Turing Institute Enrichment Scheme placement", "gold": ["turing.ac.uk"]},
+    {"id": "k07", "q": "Santa Fe Institute Complexity Postdoctoral Fellowship", "gold": ["santafe.edu"]},
+    {"id": "k08", "q": "Institute for Advanced Study Princeton membership application", "gold": ["ias.edu"]},
+    {"id": "k09", "q": "Radcliffe Institute fellowship program Harvard", "gold": ["radcliffe.harvard.edu"]},
+    {"id": "k10", "q": "Knight Science Journalism Fellowship MIT", "gold": ["ksj.mit.edu"]},
+    {"id": "k11", "q": "Emergent Ventures grant Mercatus Center application", "gold": ["mercatus.org"]},
+    {"id": "k12", "q": "South Park Commons founder fellowship", "gold": ["southparkcommons.com"]},
+    {"id": "k13", "q": "Entrepreneur First talent investor programme apply", "gold": ["joinef.com"]},
+    {"id": "k14", "q": "Interact Fellowship technologists community", "gold": ["joininteract.com"]},
+    {"id": "k15", "q": "Astera Institute residency program", "gold": ["astera.org"]},
+    {"id": "k16", "q": "Arcadia Science research organization careers", "gold": ["arcadiascience.com"]},
+    {"id": "k17", "q": "Marie Sklodowska-Curie Postdoctoral Fellowships work programme", "gold": ["marie-sklodowska-curie-actions.ec.europa.eu", "ec.europa.eu"]},
+    {"id": "k18", "q": "CERN openlab summer student programme", "gold": ["openlab.cern", "home.cern"]},
+    {"id": "k19", "q": "Simons Foundation Pivot Fellowship", "gold": ["simonsfoundation.org"]},
+    {"id": "k20", "q": "Mozilla Foundation fellowship program applicants", "gold": ["foundation.mozilla.org", "mozilla.org"]},
+    {"id": "k21", "q": "Ashoka Fellowship social entrepreneur nomination", "gold": ["ashoka.org"]},
+    {"id": "k22", "q": "Echoing Green Fellowship social impact", "gold": ["echoinggreen.org"]},
+    {"id": "k23", "q": "USIEF Fulbright Nehru fellowship for Indian citizens", "gold": ["usief.org.in"]},
+    {"id": "k24", "q": "Max Planck Institute for Intelligent Systems visiting researcher", "gold": ["is.mpg.de", "mpg.de"]},
+    {"id": "k25", "q": "NUS Institute of Data Science visiting fellow Singapore", "gold": ["nus.edu.sg"]}
+  ]
+}

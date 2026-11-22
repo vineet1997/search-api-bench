@@ -1,0 +1,2 @@
+requests
+tinyfish==0.6.1

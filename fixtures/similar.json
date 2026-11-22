@@ -1,0 +1,127 @@
+{
+ "suite": "S3_similar",
+ "note": "Lookalike expansion -- harvest.py calls this 'the cheapest way to grow a seed list'. Given one known-good program page, return sibling programs. Exa uses /findSimilar. TinyFish has NO equivalent endpoint; the runner scores its best available surrogate (fetch(links=True) on the seed, plus a title-derived search) so the gap is quantified rather than assumed.",
+ "match_default": "domain",
+ "k": 20,
+ "seeds": [
+  {
+   "id": "s01",
+   "url": "https://www.recurse.com/",
+   "gold": [
+    "joininteract.com",
+    "southparkcommons.com",
+    "hackerschool.com",
+    "mars.college",
+    "sfcompute.com",
+    "antithesis.com"
+   ]
+  },
+  {
+   "id": "s02",
+   "url": "https://www.matsprogram.org/",
+   "gold": [
+    "constellation.org",
+    "far.ai",
+    "redwoodresearch.org",
+    "apolloresearch.ai",
+    "openphilanthropy.org",
+    "anthropic.com"
+   ]
+  },
+  {
+   "id": "s03",
+   "url": "https://www.santafe.edu/engage/learn/programs/postdoctoral-fellowship",
+   "gold": [
+    "ias.edu",
+    "wiko-berlin.de",
+    "radcliffe.harvard.edu",
+    "nias.knaw.nl",
+    "cmu.edu",
+    "turing.ac.uk"
+   ]
+  },
+  {
+   "id": "s04",
+   "url": "https://www.humboldt-foundation.de/en/apply/sponsorship-programmes/humboldt-research-fellowship",
+   "gold": [
+    "daad.de",
+    "royalsociety.org",
+    "jsps.go.jp",
+    "marie-sklodowska-curie-actions.ec.europa.eu",
+    "mpg.de",
+    "leopoldina.org"
+   ]
+  },
+  {
+   "id": "s05",
+   "url": "https://www.schmidtsciencefellows.org/",
+   "gold": [
+    "simonsfoundation.org",
+    "hhmi.org",
+    "moore.org",
+    "royalsociety.org",
+    "openphilanthropy.org",
+    "sloan.org"
+   ]
+  },
+  {
+   "id": "s06",
+   "url": "https://www.turing.ac.uk/work-turing/studentships-and-fellowships",
+   "gold": [
+    "ellis.eu",
+    "inria.fr",
+    "mpg.de",
+    "ethz.ch",
+    "ox.ac.uk",
+    "cam.ac.uk"
+   ]
+  },
+  {
+   "id": "s07",
+   "url": "https://www.joinef.com/",
+   "gold": [
+    "ycombinator.com",
+    "southparkcommons.com",
+    "antler.co",
+    "techstars.com",
+    "entrepreneurfirst.com",
+    "onedeck.com"
+   ]
+  },
+  {
+   "id": "s08",
+   "url": "https://astera.org/residency/",
+   "gold": [
+    "arcadiascience.com",
+    "conviction.com",
+    "renaissancephilanthropy.org",
+    "openphilanthropy.org",
+    "convergentresearch.org"
+   ]
+  },
+  {
+   "id": "s09",
+   "url": "https://www.ias.edu/scholars/apply",
+   "gold": [
+    "santafe.edu",
+    "radcliffe.harvard.edu",
+    "wiko-berlin.de",
+    "nias.knaw.nl",
+    "ihes.fr"
+   ]
+  },
+  {
+   "id": "s10",
+   "url": "https://www.jsps.go.jp/english/e-fellow/",
+   "gold": [
+    "riken.jp",
+    "jst.go.jp",
+    "oist.jp",
+    "nims.go.jp",
+    "u-tokyo.ac.jp",
+    "kyoto-u.ac.jp"
+   ]
+  }
+ ],
+ "gold_verified": "2026-08-28 (verify-gold, www fallback applied)"
+}

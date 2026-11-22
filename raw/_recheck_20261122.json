@@ -1,0 +1,62 @@
+{
+ "checked_at": "2026-11-22T18:08:24",
+ "records": [
+  {
+   "url": "https://arxiv.org/abs/2005.11401",
+   "provider": "exa",
+   "ok": true,
+   "chars": 70827,
+   "sha256_16": "a7873e7ec2ad208c",
+   "latency_ms": 1932.4,
+   "error": null,
+   "first_200": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\n\n arXiv:2005.11401v4 [cs.CL] 12 Apr 2021\n\n# Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\n\n Patrick Lewis Email: ple",
+   "has_affordance": false,
+   "has_rag_title": true,
+   "has_2026_03_13": false,
+   "has_may_2020": false
+  },
+  {
+   "url": "https://arxiv.org/abs/2005.11401",
+   "provider": "tinyfish",
+   "ok": true,
+   "chars": 4846,
+   "sha256_16": "53d667f624f42e51",
+   "latency_ms": 4435.2,
+   "error": null,
+   "first_200": "# Computer Science > Computation and Language\n\n[Submitted on 22 May 2020 (v1), last revised 12 Apr 2021 (this version, v4)]\n\n# Title:Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\n\nV",
+   "has_affordance": false,
+   "has_rag_title": true,
+   "has_2026_03_13": false,
+   "has_may_2020": true
+  },
+  {
+   "url": "https://arxiv.org/pdf/2005.11401",
+   "provider": "exa",
+   "ok": true,
+   "chars": 70827,
+   "sha256_16": "a7873e7ec2ad208c",
+   "latency_ms": 1171.8,
+   "error": null,
+   "first_200": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\n\n arXiv:2005.11401v4 [cs.CL] 12 Apr 2021\n\n# Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\n\n Patrick Lewis Email: ple",
+   "has_affordance": false,
+   "has_rag_title": true,
+   "has_2026_03_13": false,
+   "has_may_2020": false
+  },
+  {
+   "url": "https://arxiv.org/pdf/2005.11401",
+   "provider": "tinyfish",
+   "ok": true,
+   "chars": 69080,
+   "sha256_16": "b7e0edd94ef2bd68",
+   "latency_ms": 4083.2,
+   "error": null,
+   "first_200": "Retrieval-Augmented Generation for\nKnowledge-Intensive NLP Tasks\nPatrick Lewis†‡, Ethan Perez⋆,\nAleksandra Piktus†, Fabio Petroni†, Vladimir Karpukhin†, Naman Goyal†, Heinrich Küttler†,\nMike Lewis†, W",
+   "has_affordance": false,
+   "has_rag_title": true,
+   "has_2026_03_13": false,
+   "has_may_2020": false
+  }
+ ],
+ "exa_abs_pdf_identical": true
+}

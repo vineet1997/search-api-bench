@@ -1,0 +1,25 @@
+  anchors f01 https://example.com/                          0 anchors, 167 chars
+  anchors f02 https://en.wikipedia.org/wiki/Retrieval-augme 5 anchors, 73115 chars
+  anchors f03 https://arxiv.org/abs/2005.11401              5 anchors, 9324 chars
+  anchors f04 https://arxiv.org/pdf/2005.11401              5 anchors, 67390 chars
+  anchors f05 https://www.recurse.com/about                 5 anchors, 4206 chars
+  anchors f06 https://www.humboldt-foundation.de/en/apply/s 5 anchors, 60953 chars
+  anchors f07 https://www.jsps.go.jp/english/e-fellow/      1 anchors, 12231 chars
+  anchors f08 https://www.ias.edu/scholars/apply            0 anchors, 195 chars
+  anchors f09 https://www.santafe.edu/engage/learn/programs 0 anchors, 96 chars
+  anchors f10 https://www.turing.ac.uk/work-turing/students 0 anchors, 189 chars
+  anchors f11 https://www.matsprogram.org/                  5 anchors, 32688 chars
+  anchors f12 https://astera.org/residency/                 5 anchors, 3711 chars
+  anchors f13 https://www.schmidtsciencefellows.org/fellows 1 anchors, 23965 chars
+  anchors f14 https://royalsociety.org/grants/newton-intern 5 anchors, 15899 chars
+  anchors f15 https://marie-sklodowska-curie-actions.ec.eur 5 anchors, 15888 chars
+  anchors f16 https://www.nature.com/articles/d41586-023-02 5 anchors, 12108 chars
+  anchors f17 https://news.ycombinator.com/item?id=1        0 anchors, 2858 chars
+  anchors f18 https://api.github.com/repos/tinyfish-io/agen 1 anchors, 7480 chars
+  anchors f19 https://docs.tinyfish.ai/search-api           5 anchors, 5288 chars
+  anchors f20 https://openalex.org/works?page=1             1 anchors, 1361 chars
+  anchors f21 https://www.mercatus.org/emergent-ventures    5 anchors, 1439 chars
+  anchors f22 https://joininteract.com/                     5 anchors, 1299 chars
+  anchors f23 https://www.mpg.de/en                         5 anchors, 20721 chars
+  anchors f24 https://csail.mit.edu/                        0 anchors, 3397 chars
+built anchors for 24/24 urls

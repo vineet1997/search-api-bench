@@ -1,0 +1,107 @@
+verifying 92 distinct gold hosts
+  [ 1/92] OK   a-star.edu.sg                                    601 chars
+  [ 2/92] DEAD anl.gov                                            0 chars
+  [ 3/92] OK   anthropic.com                                   1312 chars
+  [ 4/92] OK   antithesis.com                                  5822 chars
+  [ 5/92] OK   antler.co                                       4745 chars
+  [ 6/92] OK   apolloresearch.ai                               5012 chars
+  [ 7/92] OK   arcadiascience.com                               776 chars
+  [ 8/92] OK   ashoka.org                                      6365 chars
+  [ 9/92] OK   astera.org                                      1683 chars
+  [10/92] OK   broadinstitute.org                              4510 chars
+  [11/92] OK   cam.ac.uk                                       1840 chars
+  [12/92] OK   cern.ch                                         2633 chars
+  [13/92] OK   chanzuckerberg.com                              1834 chars
+  [14/92] OK   chevening.org                                   2641 chars
+  [15/92] OK   cmu.edu                                         4653 chars
+  [16/92] OK   conjecture.dev                                  4288 chars
+  [17/92] OK   constellation.org                               2914 chars
+  [18/92] OK   convergentresearch.org                          1639 chars
+  [19/92] OK   conviction.com                                  2537 chars
+  [20/92] OK   csail.mit.edu                                    306 chars
+  [21/92] OK   cscs.ch                                          382 chars
+  [22/92] OK   daad.de                                         1986 chars
+  [23/92] OK   ebi.ac.uk                                       1713 chars
+  [24/92] OK   ec.europa.eu                                     293 chars
+  [25/92] OK   echoinggreen.org                                 331 chars
+  [26/92] OK   ellis.eu                                        3458 chars
+  [27/92] OK   entrepreneurfirst.com                           6236 chars
+  [28/92] OK   epfl.ch                                         1758 chars
+  [29/92] OK   ethz.ch                                         1400 chars
+  [30/92] OK   far.ai                                          4259 chars
+  [31/92] OK   foundation.mozilla.org                          2233 chars
+  [32/92] OK   funds.effectivealtruism.org                     2497 chars
+  [33/92] OK   hackerschool.com                                3414 chars
+  [34/92] OK   hhmi.org                                         201 chars
+  [35/92] OK   home.cern                                       2633 chars
+  [36/92] OK   humboldt-foundation.de                          7402 chars
+  [37/92] OK   ias.edu                                         2324 chars
+  [38/92] DEAD ihes.fr                                            0 chars
+  [39/92] OK   inria.fr                                        1075 chars
+  [40/92] DEAD is.mpg.de                                        103 chars
+  [41/92] OK   ist.ac.at                                       3198 chars
+  [42/92] OK   joinef.com                                      6236 chars
+  [43/92] OK   joininteract.com                                1253 chars
+  [44/92] DEAD jsps.go.jp                                         0 chars
+  [45/92] DEAD jst.go.jp                                          0 chars
+  [46/92] OK   juelich.de                                      4810 chars
+  [47/92] OK   kaist.ac.kr                                     1716 chars
+  [48/92] OK   ksj.mit.edu                                      946 chars
+  [49/92] OK   kyoto-u.ac.jp                                   1608 chars
+  [50/92] OK   lbl.gov                                          491 chars
+  [51/92] OK   leopoldina.org                                  5575 chars
+  [52/92] OK   marie-sklodowska-curie-actions.ec.europa.eu      396 chars
+  [53/92] OK   mars.college                                    6347 chars
+  [54/92] DEAD mathematik.uni-bonn.de                             0 chars
+  [55/92] OK   matsprogram.org                                21380 chars
+  [56/92] OK   media.mit.edu                                    253 chars
+  [57/92] OK   mercatus.org                                    2270 chars
+  [58/92] OK   microsoft.com                                   4028 chars
+  [59/92] OK   moore.org                                        468 chars
+  [60/92] OK   mozilla.org                                     3710 chars
+  [61/92] OK   mpg.de                                          8007 chars
+  [62/92] OK   nias.knaw.nl                                    1251 chars
+  [63/92] DEAD nims.go.jp                                         0 chars
+  [64/92] OK   ntu.edu.sg                                     10005 chars
+  [65/92] OK   nus.edu.sg                                      1794 chars
+  [66/92] OK   oist.jp                                         3250 chars
+  [67/92] OK   onedeck.com                                     4464 chars
+  [68/92] OK   openlab.cern                                    1732 chars
+  [69/92] OK   openphilanthropy.org                            2898 chars
+  [70/92] OK   ornl.gov                                        3914 chars
+  [71/92] OK   ox.ac.uk                                        5436 chars
+  [72/92] OK   radcliffe.harvard.edu                           3035 chars
+  [73/92] OK   recurse.com                                     3414 chars
+  [74/92] OK   redwoodresearch.org                             1924 chars
+  [75/92] OK   renaissancephilanthropy.org                     3430 chars
+  [76/92] DEAD riken.jp                                           0 chars
+  [77/92] OK   royalsociety.org                                 265 chars
+  [78/92] DEAD santafe.edu                                      127 chars
+  [79/92] OK   schmidtsciencefellows.org                        829 chars
+  [80/92] OK   sfcompute.com                                   1542 chars
+  [81/92] OK   simonsfoundation.org                            1394 chars
+  [82/92] DEAD sinica.edu.tw                                      0 chars
+  [83/92] OK   sloan.org                                       1324 chars
+  [84/92] OK   southparkcommons.com                            5255 chars
+  [85/92] DEAD speculativetechnologies.org                        0 chars
+  [86/92] OK   techstars.com                                   3371 chars
+  [87/92] OK   turing.ac.uk                                    1806 chars
+  [88/92] DEAD u-tokyo.ac.jp                                      0 chars
+  [89/92] OK   ucl.ac.uk                                       5024 chars
+  [90/92] OK   usief.org.in                                     772 chars
+  [91/92] OK   wiko-berlin.de                                  2769 chars
+  [92/92] OK   ycombinator.com                                 4627 chars
+
+!! 12 gold hosts need attention before you trust a run:
+   - anl.gov -> invalid_url
+   - ihes.fr -> proxy_error
+   - is.mpg.de -> None
+   - jsps.go.jp -> invalid_url
+   - jst.go.jp -> invalid_url
+   - mathematik.uni-bonn.de -> invalid_url
+   - nims.go.jp -> invalid_url
+   - riken.jp -> invalid_url
+   - santafe.edu -> None
+   - sinica.edu.tw -> invalid_url
+   - speculativetechnologies.org -> proxy_error
+   - u-tokyo.ac.jp -> invalid_url

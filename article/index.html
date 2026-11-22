@@ -1,0 +1,511 @@
+<title>Exa vs TinyFish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#FCFCFB;
+  --raise:#F5F5F2;
+  --sunk:#EFEFEB;
+  --ink:#191B1C;
+  --ink-2:#3D4245;
+  --muted:#6A6F73;
+  --rule:#E3E2DE;
+  --rule-hard:#CFCEC8;
+  --tf:#00897B;
+  --exa:#B45309;
+  --tf-wash:rgba(0,137,123,.13);
+  --exa-wash:rgba(180,83,9,.13);
+  --crit:#B3261E;
+  --crit-wash:rgba(179,38,30,.09);
+  --measure:66ch;
+  --sans:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#1A1A19;--raise:#212220;--sunk:#161615;
+    --ink:#E8E7E2;--ink-2:#C3C2BC;--muted:#94938D;
+    --rule:#2E2E2C;--rule-hard:#3E3E3B;
+    --tf:#26A69A;--exa:#C97E28;
+    --tf-wash:rgba(38,166,154,.16);--exa-wash:rgba(201,126,40,.16);
+    --crit:#E2695F;--crit-wash:rgba(226,105,95,.13);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#1A1A19;--raise:#212220;--sunk:#161615;
+  --ink:#E8E7E2;--ink-2:#C3C2BC;--muted:#94938D;
+  --rule:#2E2E2C;--rule-hard:#3E3E3B;
+  --tf:#26A69A;--exa:#C97E28;
+  --tf-wash:rgba(38,166,154,.16);--exa-wash:rgba(201,126,40,.16);
+  --crit:#E2695F;--crit-wash:rgba(226,105,95,.13);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--serif);font-size:18px;line-height:1.62;
+  font-optical-sizing:auto;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px 120px}
+
+/* ---------- masthead ---------- */
+.mast{padding:76px 0 0;border-bottom:1px solid var(--rule)}
+.kicker{
+  font-family:var(--sans);font-size:12px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  display:flex;gap:14px;flex-wrap:wrap;align-items:center
+}
+.kicker .dot{width:4px;height:4px;border-radius:50%;background:var(--rule-hard)}
+h1{
+  font-family:var(--serif);font-weight:600;font-size:clamp(40px,7vw,72px);
+  line-height:1.02;letter-spacing:-.022em;margin:20px 0 0;text-wrap:balance;
+}
+h1 .vs{font-style:italic;font-weight:300;color:var(--muted);padding:0 .12em}
+.standfirst{
+  font-size:clamp(19px,2.3vw,23px);line-height:1.5;color:var(--ink-2);
+  max-width:60ch;margin:22px 0 0;font-weight:300;text-wrap:balance;
+}
+.byline{
+  font-family:var(--sans);font-size:13px;color:var(--muted);
+  margin:30px 0 26px;display:flex;gap:18px;flex-wrap:wrap
+}
+.byline b{color:var(--ink-2);font-weight:600}
+
+/* ---------- prose ---------- */
+main{max-width:var(--measure);margin:0 auto}
+h2{
+  font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.4vw,34px);
+  line-height:1.16;letter-spacing:-.015em;margin:66px 0 0;text-wrap:balance
+}
+h3{
+  font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:.02em;
+  margin:38px 0 0;color:var(--ink)
+}
+p{margin:18px 0 0}
+a{color:inherit;text-decoration:underline;text-decoration-color:var(--rule-hard);text-underline-offset:3px}
+a:hover{text-decoration-color:currentColor}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--tf);outline-offset:3px;border-radius:2px}
+strong{font-weight:600}
+code{font-family:var(--mono);font-size:.85em;background:var(--sunk);padding:.12em .38em;border-radius:3px}
+.lede{font-size:20px;color:var(--ink-2)}
+
+/* section marker: real suite IDs from the harness, not decoration */
+.marker{
+  font-family:var(--mono);font-size:12px;font-weight:500;color:var(--muted);
+  letter-spacing:.06em;margin:62px 0 -50px;display:block
+}
+
+/* ---------- breakout ---------- */
+.wide{max-width:1080px;margin-left:calc((var(--measure) - min(1080px,100%))/2)}
+@media(max-width:1140px){.wide{max-width:100%;margin-left:0}}
+
+/* ---------- verdict strip ---------- */
+.verdict{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+  margin:34px 0 0;border-radius:4px;overflow:hidden
+}
+.vcell{background:var(--ground);padding:18px 18px 20px}
+.vcell .lab{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.05em}
+.vcell .job{font-family:var(--sans);font-size:14px;font-weight:500;margin-top:7px;color:var(--ink-2);line-height:1.35}
+.vcell .win{
+  font-family:var(--sans);font-weight:600;font-size:17px;margin-top:12px;
+  display:flex;align-items:center;gap:8px
+}
+.swatch{width:10px;height:10px;border-radius:2px;flex:none}
+.s-tf{background:var(--tf)} .s-exa{background:var(--exa)}
+.win.tf{color:var(--tf)} .win.exa{color:var(--exa)}
+.vcell .ratio{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:5px;font-variant-numeric:tabular-nums}
+
+/* ---------- charts ---------- */
+figure{margin:34px 0 0}
+figcaption{
+  font-family:var(--sans);font-size:13px;color:var(--muted);
+  margin-top:14px;line-height:1.5
+}
+.legend{display:flex;gap:20px;font-family:var(--sans);font-size:13px;color:var(--ink-2);margin-bottom:18px;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:7px}
+.chart{display:flex;flex-direction:column;gap:20px}
+.grp{display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:center}
+@media(max-width:620px){.grp{grid-template-columns:1fr;gap:6px}}
+.grp .name{font-family:var(--sans);font-size:13px;color:var(--ink-2);line-height:1.3}
+.bars{display:flex;flex-direction:column;gap:2px}
+.bar{position:relative;height:22px;display:flex;align-items:center}
+.fill{
+  height:100%;border-radius:0 4px 4px 0;position:relative;
+  transition:width .2s ease
+}
+.fill.tf{background:var(--tf)} .fill.exa{background:var(--exa)}
+.bar .val{
+  font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;
+  color:var(--ink-2);margin-left:9px;white-space:nowrap
+}
+.bar[title]{cursor:help}
+.track{position:absolute;inset:0;background:var(--sunk);border-radius:0 3px 3px 0;z-index:-1}
+
+/* ---------- tables ---------- */
+.tblwrap{overflow-x:auto;margin:28px 0 0;border:1px solid var(--rule);border-radius:4px}
+table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:14px}
+th,td{padding:11px 15px;text-align:left;border-bottom:1px solid var(--rule)}
+thead th{
+  font-size:11px;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--muted);font-weight:600;background:var(--raise);white-space:nowrap
+}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+td.tf{color:var(--tf);font-weight:600} td.exa{color:var(--exa);font-weight:600}
+caption{caption-side:bottom;font-family:var(--sans);font-size:12.5px;color:var(--muted);padding:12px 15px;text-align:left}
+
+/* ---------- callouts ---------- */
+.crit{
+  border:1px solid var(--crit);background:var(--crit-wash);
+  border-radius:4px;padding:24px 26px;margin:34px 0 0
+}
+.crit .tag{
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--crit);display:flex;align-items:center;gap:8px
+}
+.crit .tag svg{flex:none}
+.crit h3{margin:12px 0 0;font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:-.01em}
+.crit p{font-size:17px}
+.note{
+  border-left:2px solid var(--rule-hard);padding:2px 0 2px 20px;
+  margin:30px 0 0;color:var(--ink-2);font-size:16.5px
+}
+
+/* ---------- readout (hero evidence) ---------- */
+.readout{
+  font-family:var(--mono);font-size:13px;background:var(--sunk);
+  border:1px solid var(--rule);border-radius:4px;margin:26px 0 0;overflow-x:auto
+}
+.rline{display:grid;grid-template-columns:88px 1fr;gap:16px;padding:11px 16px;border-bottom:1px solid var(--rule);align-items:start}
+.rline:last-child{border-bottom:none}
+.rline .k{color:var(--muted);font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding-top:2px}
+.rline .v{color:var(--ink);word-break:break-all;line-height:1.5}
+.rline .v em{font-style:normal;color:var(--crit);font-weight:600}
+.rline .v .ok{color:var(--tf);font-weight:600}
+
+details{margin:26px 0 0;border:1px solid var(--rule);border-radius:4px;background:var(--raise)}
+summary{
+  cursor:pointer;padding:14px 18px;font-family:var(--sans);font-size:14px;
+  font-weight:500;color:var(--ink-2);list-style:none;display:flex;gap:10px;align-items:center
+}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";font-family:var(--mono);color:var(--muted);font-size:15px}
+details[open] summary::before{content:"–"}
+details .body{padding:0 18px 18px;font-size:16px;color:var(--ink-2)}
+details .body p:first-child{margin-top:6px}
+
+.foot{
+  margin:70px 0 0;padding-top:26px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:13.5px;color:var(--muted);line-height:1.65
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">
+    <span>Benchmark</span><span class="dot"></span>
+    <span>28 August 2026</span><span class="dot"></span>
+    <span>462 records / 657 API calls</span>
+  </div>
+  <h1>Exa <span class="vs">vs</span> TinyFish</h1>
+  <p class="standfirst">TinyFish gives away web search and page fetching for free. I ran both against my own research stack to see what the zero actually costs. The answer wasn't the one I expected — and the most useful thing I found had nothing to do with price.</p>
+  <div class="byline">
+    <span>Four suites · 3 repeats · deterministic scoring</span>
+    <span><b>Verdict:</b> route per call, not per vendor</span>
+  </div>
+</header>
+
+<main>
+
+<p class="lede">I use <a href="https://exa.ai">Exa</a> for live web calls in a research pipeline that hunts down obscure institutional program pages — fellowships, residencies, visiting-researcher posts. It works, and it costs money. So when I found <a href="https://www.tinyfish.ai">TinyFish</a> advertising unlimited free search and fetch, the obvious question was whether I could just swap it in.</p>
+
+<p>The short answer is no, but not for the reason I assumed going in. The two products are good at genuinely different jobs, and the interesting result is a routing table, not a winner.</p>
+
+<h2>What "free" actually means</h2>
+
+<p>TinyFish's Search and Fetch are free at any wallet balance, including zero. No card, no monthly cap. That part is real. The limits are not unlimited, and they have tightened since this run: at the time it was <strong>30 search requests/minute and 150 fetch URLs/minute</strong>; as of 2026-11-17 the free tier also caps <strong>500 searches/hour and 1,000 fetch URLs/day</strong>. Fine for a paced crawl, fatal for a wide parallel sweep — and a hard ceiling for anything crawling seriously.</p>
+
+<p>What makes the comparison interesting is what Exa charges for. It isn't really the search:</p>
+
+<div class="tblwrap">
+<table>
+  <caption>Exa list price, August 2026: $7 per 1,000 searches covering 10 results, $1 per 1,000 additional results, $1 per 1,000 pages of text.</caption>
+  <thead><tr><th>Call pattern</th><th style="text-align:right">Exa, per 1k calls</th><th style="text-align:right">TinyFish</th></tr></thead>
+  <tbody>
+    <tr><td>search, 10 results, no text</td><td class="num">$7</td><td class="num tf">$0</td></tr>
+    <tr><td>search, 15 results + text</td><td class="num">$27</td><td class="num tf">$0</td></tr>
+    <tr><td>search, 20 results + text</td><td class="num">$37</td><td class="num tf">$0</td></tr>
+    <tr><td>search, 25 results + text</td><td class="num">$47</td><td class="num tf">$0</td></tr>
+    <tr><td><code>findSimilar</code>, 20 results</td><td class="num">$17</td><td class="num" style="color:var(--muted)">n/a</td></tr>
+    <tr><td><code>contents</code> (URL → text)</td><td class="num">$1 / 1k pages</td><td class="num tf">$0</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>On a 25-result sweep with text, the search itself is $7 of $47. Results 11–25 are $15 and their text is another $25. <strong>Before comparing vendors at all, the biggest cost lever in my own code was a number I'd never tuned:</strong> <code>numResults</code>.</p>
+
+<h2>How I set it up</h2>
+
+<p>A benchmark you can talk yourself into is worthless, so I built the thing to make that hard. Three constraints did most of the work.</p>
+
+<p><strong>Collection and judgement are separate programs.</strong> The runner only writes raw JSONL; the scorer makes zero network calls and contains zero model judgement. Same raw files in, byte-identical scorecard out — I verified it by diffing three consecutive runs. That means I could rewrite the rubric after seeing the data without re-spending a cent, which turned out to matter a lot.</p>
+
+<p><strong>Ground truth for extraction comes from a third party.</strong> For the fetch tests I needed to know what a page actually says. Asking either contestant is circular, so I used Firecrawl — a third provider — as referee, and scored each product on how much of the referee's text it reproduced. Neither contestant gets to define what "correct" means.</p>
+
+<p><strong>Each product is scored on its best variant.</strong> Where a product had multiple modes, it gets credit for whichever did best. If it loses, it loses on merit.</p>
+
+<p>Four suites, weighted by how often my code actually makes each kind of call — not by how interesting the call is.</p>
+
+<span class="marker">S1 · KNOWN-ITEM RETRIEVAL · 25 queries · weight 0.25</span>
+<h2>Looking up something by name</h2>
+
+<p>Twenty-five queries that name a real program — "Recurse Center programmer retreat application" — where exactly one host is the right answer. This is the bread-and-butter keyword sweep.</p>
+
+<figure class="wide">
+  <div class="legend">
+    <span><i class="swatch s-exa"></i>Exa <code>type=auto</code></span>
+    <span><i class="swatch s-tf"></i>TinyFish search</span>
+  </div>
+  <div class="chart">
+    <div class="grp"><div class="name">Recall@20</div><div class="bars">
+      <div class="bar" title="Exa: 98.0%"><div class="fill exa" style="width:98%"></div><span class="val">98.0%</span></div>
+      <div class="bar" title="TinyFish: 98.0%"><div class="fill tf" style="width:98%"></div><span class="val">98.0%</span></div>
+    </div></div>
+    <div class="grp"><div class="name">nDCG@20<br><span style="color:var(--muted);font-size:12px">rank quality</span></div><div class="bars">
+      <div class="bar" title="Exa: 85.1%"><div class="fill exa" style="width:85.1%"></div><span class="val">85.1%</span></div>
+      <div class="bar" title="TinyFish: 90.3%"><div class="fill tf" style="width:90.3%"></div><span class="val">90.3%</span></div>
+    </div></div>
+    <div class="grp"><div class="name">MRR<br><span style="color:var(--muted);font-size:12px">1 / rank of first hit</span></div><div class="bars">
+      <div class="bar" title="Exa: 0.869"><div class="fill exa" style="width:86.9%"></div><span class="val">0.869</span></div>
+      <div class="bar" title="TinyFish: 0.943"><div class="fill tf" style="width:94.3%"></div><span class="val">0.943</span></div>
+    </div></div>
+  </div>
+  <figcaption>Identical recall. TinyFish puts the right answer higher up — its first hit is closer to position one.</figcaption>
+</figure>
+
+<p>A dead heat on whether the answer is found, and a small TinyFish win on where it lands. Exa is faster (1.3s vs 3.6s at the median) and needs one call where TinyFish needs two, because TinyFish returns a fixed 10 results per page.</p>
+
+<p>For this job the free option is simply as good. <strong>Every dollar I was spending on named lookups was waste.</strong></p>
+
+<span class="marker">S2 · SEMANTIC DISCOVERY · 12 queries · weight 0.30</span>
+<h2>Finding things you can only describe</h2>
+
+<p>This is the suite I care about most, and the one with no keyword to lean on. The queries are sentences: <em>"a paid six-month research residency at an AI lab for an experienced software engineer who does not have a PhD."</em> There's no name to match. Exa runs this through its neural mode. TinyFish has no semantic mode at all — its only lever is a <code>purpose</code> field for describing intent.</p>
+
+<figure class="wide">
+  <div class="legend">
+    <span><i class="swatch s-exa"></i>Exa <code>type=neural</code></span>
+    <span><i class="swatch s-tf"></i>TinyFish search</span>
+  </div>
+  <div class="chart">
+    <div class="grp"><div class="name">Hit@10<br><span style="color:var(--muted);font-size:12px">≥1 good result in top 10</span></div><div class="bars">
+      <div class="bar" title="Exa: 50.0%"><div class="fill exa" style="width:50%"></div><span class="val">50.0%</span></div>
+      <div class="bar" title="TinyFish: 41.7%"><div class="fill tf" style="width:41.7%"></div><span class="val">41.7%</span></div>
+    </div></div>
+    <div class="grp"><div class="name">Recall@20</div><div class="bars">
+      <div class="bar" title="Exa: 16.7%"><div class="fill exa" style="width:16.7%"></div><span class="val">16.7%</span></div>
+      <div class="bar" title="TinyFish: 11.1%"><div class="fill tf" style="width:11.1%"></div><span class="val">11.1%</span></div>
+    </div></div>
+    <div class="grp"><div class="name">MRR</div><div class="bars">
+      <div class="bar" title="Exa: 0.273"><div class="fill exa" style="width:27.3%"></div><span class="val">0.273</span></div>
+      <div class="bar" title="TinyFish: 0.207"><div class="fill tf" style="width:20.7%"></div><span class="val">0.207</span></div>
+    </div></div>
+  </div>
+  <figcaption>Exa leads across the board. Absolute numbers are low for both — see the caveat below, they're a floor, not an estimate.</figcaption>
+</figure>
+
+<p>Exa wins, reaching 78.4% of parity — below my 90% replacement threshold. The gap is real but smaller than "has a neural index" versus "doesn't" would suggest. Keyword search on a well-written descriptive sentence gets you a surprising distance.</p>
+
+<p>One clean negative result: <strong>TinyFish's <code>purpose</code> parameter changed the returned URLs in 0 of 36 comparisons.</strong> Identical lists, every time. It is not a semantic-search knob, and I'd stop passing it.</p>
+
+<div class="note"><strong>Read these absolutes as a floor.</strong> 16.7% recall looks terrible for a search engine. It mostly reflects my gold sets being too narrow — Exa returned real AI-safety fellowships like <code>cbai.ai</code> and <code>iliad.ac</code> that I simply hadn't listed. Both engines faced the identical list, so the ratio holds; the absolute numbers understate both.</div>
+
+<span class="marker">S3 · LOOKALIKE EXPANSION · 10 seeds · weight 0.15</span>
+<h2>Growing a list from one good hit</h2>
+
+<p>Give it one program's URL, get back more like it. Exa has a dedicated <code>findSimilar</code> endpoint. TinyFish has nothing equivalent, so I built the best surrogate I could — pull the seed page's outbound links, then search on the seed's own title — to measure the gap rather than assume it.</p>
+
+<p>This suite is where I learned the most, because my first version of it was wrong. I'd assumed <code>findSimilar</code> returns competitor <em>organisations</em>. It doesn't — it returns similar <em>pages</em>, and for a homepage seed that means a lot of the seed's own subpages. Scored against my original gold sets, <strong>both products got exactly 0.0%</strong>. A benchmark where everyone scores zero is measuring the benchmark, not the products.</p>
+
+<p>So I redefined it around what the call is actually for in my pipeline — growing a seed list — and measured new-domain yield instead:</p>
+
+<figure class="wide">
+  <div class="legend">
+    <span><i class="swatch s-exa"></i>Exa <code>findSimilar</code></span>
+    <span><i class="swatch s-tf"></i>TinyFish surrogate</span>
+  </div>
+  <div class="chart">
+    <div class="grp"><div class="name">New domains<br><span style="color:var(--muted);font-size:12px">per seed, of 20 results</span></div><div class="bars">
+      <div class="bar" title="Exa: 8.2 new domains per seed"><div class="fill exa" style="width:82%"></div><span class="val">8.2</span></div>
+      <div class="bar" title="TinyFish surrogate: 0.3 new domains per seed"><div class="fill tf" style="width:3%"></div><span class="val">0.3</span></div>
+    </div></div>
+    <div class="grp"><div class="name">Off-domain rate<br><span style="color:var(--muted);font-size:12px">results leaving the seed site</span></div><div class="bars">
+      <div class="bar" title="Exa: 50.1%"><div class="fill exa" style="width:50.1%"></div><span class="val">50.1%</span></div>
+      <div class="bar" title="TinyFish surrogate: 6.0%"><div class="fill tf" style="width:6%"></div><span class="val">6.0%</span></div>
+    </div></div>
+  </div>
+  <figcaption>Scaled to 10 new domains. The surrogate returns the seed's own subpages 74% of the time — it doesn't expand anything.</figcaption>
+</figure>
+
+<p>This is the one unambiguous, order-of-magnitude result in the whole exercise: <strong>27× more new domains per seed.</strong> If you expand seed lists from URLs, there is no free substitute. Don't try to fake it — I tried, and the fake returns the page you already had.</p>
+
+<span class="marker">S4 · CONTENT EXTRACTION · 24 URLs · weight 0.30</span>
+<h2>Turning a URL into text</h2>
+
+<p>Twenty-four URLs chosen to hurt: PDFs, JS-only single-page apps, EU cookie walls, a legacy government site, a soft paywall, a raw JSON endpoint. Scored against the Firecrawl referee.</p>
+
+<figure class="wide">
+  <div class="legend">
+    <span><i class="swatch s-exa"></i>Exa <code>contents</code></span>
+    <span><i class="swatch s-tf"></i>TinyFish <code>fetch</code></span>
+  </div>
+  <div class="chart">
+    <div class="grp"><div class="name">Success rate</div><div class="bars">
+      <div class="bar" title="Exa: 91.7%"><div class="fill exa" style="width:91.7%"></div><span class="val">91.7%</span></div>
+      <div class="bar" title="TinyFish: 91.7%"><div class="fill tf" style="width:91.7%"></div><span class="val">91.7%</span></div>
+    </div></div>
+    <div class="grp"><div class="name">Anchor recall<br><span style="color:var(--muted);font-size:12px">referee text reproduced</span></div><div class="bars">
+      <div class="bar" title="Exa: 51.4%"><div class="fill exa" style="width:51.4%"></div><span class="val">51.4%</span></div>
+      <div class="bar" title="TinyFish: 55.7%"><div class="fill tf" style="width:55.7%"></div><span class="val">55.7%</span></div>
+    </div></div>
+  </div>
+  <figcaption>Statistically a tie on success; a small TinyFish edge on how much of the real text comes back.</figcaption>
+</figure>
+
+<p>The averages hide the useful detail. Broken out by page type, they fail in different places:</p>
+
+<div class="tblwrap">
+<table>
+  <caption>Anchor recall by page category, averaged over 3 repeats. Higher is better.</caption>
+  <thead><tr><th>Page type</th><th style="text-align:right">Exa</th><th style="text-align:right">TinyFish</th><th>Winner</th></tr></thead>
+  <tbody>
+    <tr><td>arXiv abstract page</td><td class="num">20%</td><td class="num tf">100%</td><td>TinyFish</td></tr>
+    <tr><td>PDF</td><td class="num">60%</td><td class="num tf">80%</td><td>TinyFish</td></tr>
+    <tr><td>JS single-page app</td><td class="num exa">86.7%</td><td class="num">66.7%</td><td>Exa</td></tr>
+    <tr><td>Marketing page</td><td class="num">80%</td><td class="num">80%</td><td>tie</td></tr>
+    <tr><td>Long static article</td><td class="num">60%</td><td class="num">60%</td><td>tie</td></tr>
+    <tr><td>EU cookie wall</td><td class="num">26.7%</td><td class="num">26.7%</td><td>both fail</td></tr>
+    <tr><td>Soft paywall</td><td class="num">0%</td><td class="num">20%</td><td>both fail</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>Neither product is a scraping solution for consent-gated European sites.</strong> Both sit near 27% on cookie walls and near zero on paywalls. If your corpus is EU institutional pages — mine partly is — budget for a real browser and stop expecting an extraction API to save you.</p>
+
+<h2>The thing I actually went looking for money and found instead</h2>
+
+<p>While checking why Exa scored 20% on an arXiv abstract page, I found this. It is reproducible across all three repeats.</p>
+
+<div class="crit">
+  <div class="tag">
+    <svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 15 14H1L8 1.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 6v3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="8" cy="11.8" r=".9" fill="currentColor"/></svg>
+    Correctness finding
+  </div>
+  <h3>Exa attached another paper’s title and date to the right paper</h3>
+  <p>I asked for the RAG paper, <code>arxiv.org/abs/2005.11401</code>. Exa returned the <em>correct</em> paper body — 74.3% of its distinctive sentences, verbatim, with the right title and author line inside the text — underneath a metadata header belonging to a <em>different</em> paper, dated six years later. <em>Byte-identical</em> for the abstract page and the PDF: two different URLs, one response, three times out of three.</p>
+
+  <div class="readout">
+    <div class="rline"><span class="k">Requested</span><span class="v">https://arxiv.org/abs/2005.11401 &nbsp;→&nbsp; "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"</span></div>
+    <div class="rline"><span class="k">TinyFish</span><span class="v"><span class="ok">✓</span> Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks · submitted 22 May 2020</span></div>
+    <div class="rline"><span class="k">Firecrawl</span><span class="v"><span class="ok">✓</span> Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks</span></div>
+    <div class="rline"><span class="k">Exa</span><span class="v">⚠ header said <em>"Affordance-Compiled Intelligence: Observable-Only Cognitive Impedance Matching for No-Meta LLM-Integrated Systems"</em> · published 2026-03-13 · "3,030 citations" — above the correct RAG text</span></div>
+    <div class="rline"><span class="k">Collisions</span><span class="v">Exa: 1 group across 24 URLs (abs + pdf → identical text) · TinyFish: 0</span></div>
+  </div>
+
+  <p style="margin-top:20px">Two independent extractors returned correctly-labelled text. <strong>Re-checked 2026-11-22: this no longer reproduces &mdash; Exa now returns the correct title and identifier, and the metadata-enrichment block the bad header lived in is gone. It was not reported in between, so no credit is claimed for the fix.</strong> Scope is narrow — one collision group in twenty-four URLs — and I'm not claiming Exa is broadly unreliable. But the failure mode is the worrying kind.</p>
+</div>
+
+<p>A failed fetch is loud. You see the error, you retry, you move on. <strong>Wrong content arrives looking exactly like right content</strong> and flows straight into your corpus as fact. In a pipeline that reads pages to extract eligibility rules and deadlines, that is worse than an outage.</p>
+
+<p>The practical rule I've adopted: if an extraction feeds a citation, a dataset, or a claim I'm going to publish, fetch it twice with different providers and compare. That's cheap now that one of the two providers is free — which is an argument for keeping both integrated that has nothing to do with price.</p>
+
+<h2>Where I was wrong</h2>
+
+<p>Three metrics changed <em>after</em> I saw data. That's exactly how a benchmark gets quietly rigged, so here they are.</p>
+
+<details>
+  <summary>A subdomain bug that reversed a verdict</summary>
+  <div class="body">
+    <p>My matcher required an exact host match. So when Exa found <code>alignment.anthropic.com</code> — the actual Anthropic Fellows page — it scored as a <em>miss</em> against gold <code>anthropic.com</code>. Fixing it to accept subdomains moved S2 from TinyFish winning at 105.5% to Exa winning at 78.4%.</p>
+    <p>My bug had been hiding a real Exa advantage. If I'd published the first run I'd have had the headline exactly backwards.</p>
+  </div>
+</details>
+
+<details>
+  <summary>A suite that measured a capability neither product claims</summary>
+  <div class="body">
+    <p>The S3 rewrite described above. Both scoring 0.0% was the tell. When every contestant scores zero, suspect the ruler.</p>
+  </div>
+</details>
+
+<details>
+  <summary>An extraction metric that graded typography</summary>
+  <div class="body">
+    <p>I matched reference sentences by exact substring. On PDFs the referee renders an author line as <code>Patrick Lewis††, Ethan Perez*</code> while another extractor emits <code>Patrick Lewis†‡, Ethan Perez⋆</code>. Same text, different glyphs, scored as a total miss. Normalising before comparison raised <em>both</em> products (Exa 38.6→51.4%, TinyFish 44.3→55.7%) and didn't change who won.</p>
+  </div>
+</details>
+
+<p>There's a fourth I couldn't fix: my gold sets are hand-curated by one person, and S2's low absolutes are the visible symptom. Widening them is the highest-value next improvement, and it's the part I'd most want someone else's eyes on.</p>
+
+<h2>The routing table</h2>
+
+<p>Weighted across all four suites TinyFish reaches 88.8% of Exa — a number I'd throw away, because the average hides that they win different jobs. This is the actual output of the exercise:</p>
+
+<div class="verdict wide">
+  <div class="vcell">
+    <div class="lab">S1 · w 0.25</div>
+    <div class="job">Look up a named thing</div>
+    <div class="win tf"><i class="swatch s-tf"></i>TinyFish</div>
+    <div class="ratio">101.7% of Exa</div>
+  </div>
+  <div class="vcell">
+    <div class="lab">S2 · w 0.30</div>
+    <div class="job">Discover from a description</div>
+    <div class="win exa"><i class="swatch s-exa"></i>Exa</div>
+    <div class="ratio">TinyFish at 78.4%</div>
+  </div>
+  <div class="vcell">
+    <div class="lab">S3 · w 0.15</div>
+    <div class="job">Expand a seed URL</div>
+    <div class="win exa"><i class="swatch s-exa"></i>Exa</div>
+    <div class="ratio">TinyFish at 0.4%</div>
+  </div>
+  <div class="vcell">
+    <div class="lab">S4 · w 0.30</div>
+    <div class="job">Fetch a URL's text</div>
+    <div class="win tf"><i class="swatch s-tf"></i>TinyFish</div>
+    <div class="ratio">103.0% of Exa</div>
+  </div>
+</div>
+
+<p style="margin-top:30px">Which collapses to one line: <strong>TinyFish for lookup and fetch, Exa for discovery and expansion.</strong></p>
+
+<p>That's a better outcome than a clean swap would have been. The two calls TinyFish takes over are the high-volume ones — named lookups and page fetches are most of what my pipeline does — so most of the spend goes to zero. The two Exa keeps are the ones with no substitute at any price, and keeping the integration alive is also the hedge if a free tier stops being free.</p>
+
+<h2>If you're evaluating this yourself</h2>
+
+<p>Three things I'd do differently, or would tell you to do:</p>
+
+<p><strong>Split collection from scoring.</strong> Everything good in this exercise came from being able to re-score without re-spending. I rewrote the rubric three times on data I'd already paid for.</p>
+
+<p><strong>Use a third provider as referee.</strong> The moment you ask one contestant what the right answer is, you've lost. Firecrawl cost me a few cents and made the extraction numbers defensible.</p>
+
+<p><strong>Distrust unanimous results.</strong> Both suites where the two products scored identically — the 0.0% in S3, the 0% anchor recall on PDFs — were broken measurement, not real ties. Agreement between competitors is a smell.</p>
+
+<p>And one flat-out gotcha that cost me an hour: <strong>neither provider follows an apex-to-<code>www</code> redirect.</strong> <code>https://jsps.go.jp/</code> returns nothing from both; <code>https://www.jsps.go.jp/</code> returns the full page from both. I briefly thought I'd found a TinyFish weakness before checking Exa and finding the identical behaviour. Normalise your URLs.</p>
+
+<div class="foot">
+  <p>Run 20260828-124047 · 25 known-item queries, 12 discovery queries, 10 expansion seeds, 24 fetch URLs · 3 repeats · 462 records from 657 provider API calls · 18 not-ok records (12 in S4: 6 Exa <code>empty_text</code>, 6 TinyFish <code>bot_blocked</code>; 6 in S3). The arXiv metadata finding was re-checked on 2026-11-22 and no longer reproduces. Latency measured from India on a single connection; treat as directional. Prices are list prices as published on 28 August 2026. Tested against <code>tinyfish==0.6.1</code>.</p>
+  <p>Both providers' indexes drift. If you're reading this more than a few months out, the capability gaps will hold longer than the numbers will — re-run before betting on either.</p>
+</div>
+
+</main>
+</div>
