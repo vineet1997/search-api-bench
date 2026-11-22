@@ -44,7 +44,7 @@ def _exa_headers():
 # --------------------------------------------------------------------- EXA
 
 def exa_search(query, n=20, kind="auto", text=True):
-    """Mirror of tools/kit.py:exa()."""
+    """Mirrors the search call the calling project ships."""
     def call():
         payload = {"query": query, "numResults": n, "type": kind}
         if text:
@@ -65,7 +65,7 @@ def exa_search(query, n=20, kind="auto", text=True):
 
 
 def exa_similar(url, n=20):
-    """Mirror of tools/kit.py:exa_similar()."""
+    """Mirrors the findSimilar call the calling project ships."""
     def call():
         r = requests.post("https://api.exa.ai/findSimilar",
                           json={"url": url, "numResults": n},
@@ -83,7 +83,7 @@ def exa_similar(url, n=20):
 
 
 def exa_fetch(url, chars=100000):
-    """Mirror of tools/kit.py:exa_contents(), single URL."""
+    """Mirrors the contents call the calling project ships, single URL."""
     def call():
         r = requests.post("https://api.exa.ai/contents",
                           json={"urls": [url], "text": {"maxCharacters": chars}},

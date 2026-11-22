@@ -9,7 +9,7 @@ Two providers, four jobs. They are not substitutes — each wins different calls
 Measured 2026-08-28 against `exa` and `tinyfish==0.6.1`: 462 records from 657 provider
 API calls, 3 repeats. Pricing and rate limits re-checked 2026-11-17; the arXiv finding below
 re-checked 2026-11-22.
-Method and raw data: [`bench/RUBRIC.md`](bench/RUBRIC.md). Re-run before trusting these
+Method and raw data: [`RUBRIC.md`](RUBRIC.md). Re-run before trusting these
 numbers past ~6 months.
 
 ---
@@ -101,7 +101,7 @@ of text. TinyFish Search and Fetch are $0.00 at any wallet balance.
 | Call pattern | Exa $/1k calls | TinyFish |
 |---|---|---|
 | search, 10 results, no text | $7 | $0 |
-| search, 15 results + text (`kit.py` default) | $27 | $0 |
+| search, 15 results + text (the pipeline's default) | $27 | $0 |
 | search, 20 results + text (neural) | $37 | $0 |
 | search, 25 results + text (sweep) | **$47** | $0 |
 | `findSimilar`, 20 results | $17 | *not available* |
@@ -173,7 +173,7 @@ Browser/Agent product.
   so the **ratio** holds and the absolute numbers understate both.
 - **S3's metric was redefined after seeing data.** `findSimilar` returns similar *pages*,
   not competitor *organisations* — the original gold premise was wrong and scored 0.0%
-  for both. It now measures new-domain yield. See `bench/RUBRIC.md` §9.
+  for both. It now measures new-domain yield. See `RUBRIC.md` §9.
 - **Latency was measured from India on a single connection.** Treat as directional.
 - **Free is a pricing decision, not a contract** — and the terms have already moved once:
   per-hour and per-day caps appeared between 2026-08-28 and 2026-11-17. Routing keeps Exa

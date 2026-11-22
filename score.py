@@ -18,7 +18,7 @@ FIX = os.path.join(HERE, "fixtures")
 RAW = os.path.join(HERE, "raw")
 
 # Weights reflect how often each surface is actually called in this repo
-# (tools/kit.py + discovery-kit/harvest.py), not how interesting it is.
+# in the calling project, not how interesting it is.
 WEIGHTS = {"S1": 0.25, "S2": 0.30, "S3": 0.15, "S4": 0.30}
 
 # A surface counts as replaceable when TinyFish reaches this share of Exa's score.
@@ -209,7 +209,7 @@ def score_s3(run_id):
     were on the seed's own domain, and gold-hit rate was 0 for both. That made
     the old metric a test of a capability neither product claims.
 
-    The metric now measures the job harvest.py:150 actually uses this for --
+    The metric now measures the job the pipeline actually uses this for --
     "the cheapest way to grow a seed list": how many NEW domains come back.
     Fully deterministic, and it no longer depends on my guess at who a given
     programme's competitors are."""

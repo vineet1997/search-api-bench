@@ -13,16 +13,19 @@ seeing raw data, and one of them reversed the S2 verdict.
 
 ## 1. What we actually use Exa for
 
-This is not a generic search bake-off. The repo makes exactly four kinds of Exa call
-(`tools/kit.py`, `discovery-kit/harvest.py`), and the rubric weights them by how much
-work they do here:
+This is not a generic search bake-off. The calling project — a research pipeline that hunts
+down institutional programme pages — makes exactly four kinds of Exa call, and the rubric
+weights them by how much work they do there:
 
-| # | Call | Where | What it does for us | Weight |
-|---|------|-------|--------------------|--------|
-| 1 | `search` type=auto | `kit.py:32`, `harvest.py:135` | keyword sweeps for named programs | **0.25** |
-| 2 | `search` type=neural | `kit.py:161` | precedent mining from a descriptive sentence — the thing `kit.py:5` calls "best for precedent mining" | **0.30** |
-| 3 | `findSimilar` | `kit.py:48`, `harvest.py:149` | lookalike expansion; `harvest.py:150` calls it "the cheapest way to grow a seed list" | **0.15** |
-| 4 | `contents` | `kit.py:56`, `harvest.py:158` | URL → page text for verification | **0.30** |
+| # | Call | What it does for the pipeline | Weight |
+|---|------|------------------------------|--------|
+| 1 | `search` type=auto | keyword sweeps for named programmes | **0.25** |
+| 2 | `search` type=neural | precedent mining from a descriptive sentence — the call the pipeline's own comments describe as "best for precedent mining" | **0.30** |
+| 3 | `findSimilar` | lookalike expansion; described in the pipeline as "the cheapest way to grow a seed list" | **0.15** |
+| 4 | `contents` | URL → page text for verification | **0.30** |
+
+**These weights are the pipeline's call mix, not a claim about general importance.** If your
+mix differs, change them and re-score — which is the point of the per-suite ratios below.
 
 Weights sum to 1.0 and are declared in `score.py:WEIGHTS`. Change them there if you
 disagree — the scorer re-runs offline in a second.
@@ -226,7 +229,7 @@ identically to both providers.
 sibling *organisations*. The raw data refuted that: 46% of Exa's results and 91%
 of the TinyFish surrogate's were on the seed's own domain, and gold-hit rate was
 0.0% for **both**. The suite was testing a capability neither product claims.
-It now measures the job `harvest.py:150` actually uses it for — **new-domain
+It now measures the job the pipeline actually uses it for — **new-domain
 yield** when growing a seed list. The old gold-hit rate is still reported as a
 secondary column.
 

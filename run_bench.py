@@ -53,7 +53,7 @@ def stamp():
 # ------------------------------------------------------------------ suites
 
 def run_s1(run_id, limit, dry):
-    """Known-item retrieval. Exa type=auto (what kit.py ships) vs TinyFish web."""
+    """Known-item retrieval. Exa type=auto (the shipped config) vs TinyFish web."""
     fx = fixture("known_item")
     qs = fx["queries"][:limit] if limit else fx["queries"]
     path = out("S1_known_item", run_id)
